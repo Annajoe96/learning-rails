@@ -1,5 +1,35 @@
-<h1>Hello World!</h1>
 
-<% @array.each do |v| %>
-  <h3><%= v %></h3>
+
+
+<%= form_with(url: "/result", method: "post", local: true) do %>
+  <%= label_tag(:name, "Name:") %>
+  <%= text_field_tag(:name) %>
+
+  <%= label_tag(:year, "Year of birth:") %>
+  <%= text_field_tag(:year) %>
+
+  <h3><%= @question_symptom %></h3>
+
+
+  <% {'fever': 'Fever and Chills', 'throat': 'Sore Throat', 'headaches': 'Headaches','none': 'None of above'}.each do |key, value| %>
+    <%= check_box_tag "symptom_#{key}" %>
+    <%= label_tag("symptom_#{key}", value) %>
+  <% end %>
+
+  <h3><%= @question_conditions %></h3>
+
+  <% {'cancer': 'Cancer', 'HIV': 'HIV - AIDS', 'Asthma': 'Asthma','none': 'None of above'}.each do |key, value| %>
+    <%= check_box_tag "condition_#{key}" %>
+    <%= label_tag("condition_#{key}", value) %>
+  <% end %>
+
+  <h3><%= @question_travel %></h3>
+
+  <% {'6 weeks': '6 Weeks', '1 week': '1 Week', 'morethan6': 'More than 6 weeks','none': 'None of above'}.each do |key, value| %>
+    <%= radio_button_tag "travel", key %>
+    <%= label_tag("travel_#{key}", value) %>
+  <% end %>
+
+  <br><%= submit_tag("Submit") %></br>
+
 <% end %>
